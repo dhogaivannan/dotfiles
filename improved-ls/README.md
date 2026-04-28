@@ -20,16 +20,34 @@ Short listings (`ls`) fall back to the system `ls`'s built-in coloring.
 
 ## Install
 
+### Local (already cloned)
+
 ```fish
-# from inside this dotfiles repo
 ~/dotfiles/improved-ls/install.fish
 ```
 
-The installer symlinks `conf.d/*.fish` and `functions/*.fish` into
-`~/.config/fish/`. Re-run anytime to refresh links.
+Symlinks `conf.d/*.fish` and `functions/*.fish` into `~/.config/fish/`.
+Re-run anytime to refresh links.
 
-If your `config.fish` already defines `alias ls=...`, the installer prints a
-warning — that alias must be removed for the wrapper to take effect.
+### Remote one-liner (any Linux/macOS box with fish + curl)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dhogaivannan/dotfiles/main/improved-ls/install-remote.sh | bash
+```
+
+Downloads the fish files straight into `~/.config/fish/{conf.d,functions}`
+— no clone, no symlinks. Requires `fish` to already be installed; the
+script prints the right install command for your distro if it's missing.
+
+To install from a fork, point `IMPROVED_LS_REPO_RAW` at it:
+
+```bash
+export IMPROVED_LS_REPO_RAW=https://raw.githubusercontent.com/<user>/<repo>/main/improved-ls
+curl -fsSL "$IMPROVED_LS_REPO_RAW/install-remote.sh" | bash
+```
+
+If your `config.fish` already defines `alias ls=...`, both installers print
+a warning — that alias must be removed for the wrapper to take effect.
 
 ## Uninstall
 
